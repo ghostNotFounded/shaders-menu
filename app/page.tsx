@@ -5,6 +5,7 @@ import React, { useEffect } from "react";
 import Lenis from "lenis";
 
 import Projects from "@/components/Projects";
+import Scene from "@/components/Scene";
 
 export default function Page() {
   useEffect(() => {
@@ -20,9 +21,10 @@ export default function Page() {
 
   return (
     <main>
-      <div className="h-[50vh]" />
+      <Scene />
+      {/* <div className="h-[50vh]" />
       <Projects />
-      <div className="h-[50vh]" />
+      <div className="h-[50vh]" /> */}
     </main>
   );
 }
