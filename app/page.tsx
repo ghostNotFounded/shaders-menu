@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import Lenis from "lenis";
 
@@ -19,12 +19,14 @@ export default function Page() {
     requestAnimationFrame(raf);
   }, []);
 
+  const [activeProject, setActiveProject] = useState<number | null>(null);
+
   return (
     <main>
-      <Scene />
-      {/* <div className="h-[50vh]" />
-      <Projects />
-      <div className="h-[50vh]" /> */}
+      <Scene activeProject={activeProject} />
+      <div className="h-[50vh]" />
+      <Projects setActiveProject={setActiveProject} />
+      <div className="h-[50vh]" />
     </main>
   );
 }
