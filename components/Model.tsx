@@ -10,17 +10,20 @@ import useDimension from "@/lib/useDimension";
 import { fragment, vertex } from "@/lib/shader";
 import { projects } from "@/constants";
 
+function useProjectTextures() {
+  return projects.map((project) => useTexture(project.src));
+}
+
 export default function Model({
   activeProject,
 }: {
   activeProject: number | null;
 }) {
   const mesh = useRef(null);
-
   const mouse = useMouse();
   const dimension = useDimension();
+  const textures = useProjectTextures(); // Load textures using the custom hook
 
-  const textures = projects.map((project) => useTexture(project.src));
   const uniforms = useRef({
     uTexture: { value: textures[0] },
     uDelta: { value: { x: 0, y: 0 } },
@@ -38,7 +41,7 @@ export default function Model({
       // @ts-ignore
       mesh.current.material.uniforms.uTexture.value = textures[activeProject];
     }
-  }, [activeProject]);
+  }, [activeProject, textures]);
 
   const { viewport } = useThree();
 
