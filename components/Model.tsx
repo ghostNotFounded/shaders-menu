@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 
 import { useFrame, useThree } from "@react-three/fiber";
 import { useMotionValue, useTransform } from "framer-motion";
@@ -11,7 +11,8 @@ import { fragment, vertex } from "@/lib/shader";
 import { projects } from "@/constants";
 
 function useProjectTextures() {
-  return projects.map((project) => useTexture(project.src));
+  const texturePaths = projects.map((project) => project.src);
+  return useTexture(texturePaths);
 }
 
 export default function Model({
